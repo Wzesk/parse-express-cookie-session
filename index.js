@@ -129,6 +129,15 @@ module.exports = function (options) {
             // Skip Set-Cookie if cookie is same as request.
             if (reqCookieJson !== resCookieJson) {
                 var val = JSON.stringify(resParseUserSession);
+
+                
+                ////////////////////////////////////////////////////////////////////////////////wz
+                var exDate = new Date();
+                exDate.setDate(exDate.getDate() + 365);
+                cookie.expires = exDate;
+                ////////////////////////////////////////////////////////////////////////////////wz
+
+
                 val = cookie.serialize(key, val);
                 res.setHeader('Set-Cookie', val);
                 // Encrypt and sign. Prefix is Connect's convention for signed cookie.
